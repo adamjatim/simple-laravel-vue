@@ -1,39 +1,39 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-// import './bootstrap';
 import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
-/**
- * Next, we will create a fresh Vue application instance. You may then begin
- * registering components with the application instance so they are ready
- * to use in your application's views. An example is included for you.
- */
+// Import komponen halaman untuk routing
+import HomeComponent from './pages/HomeComponent.vue';
+import AboutComponent from './pages/AboutComponent.vue';
 
-const app = createApp({});
+// Definisikan rute
+const routes = [
+    { path: '/', component: HomeComponent },
+    { path: '/about', component: AboutComponent }
+];
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+// Buat instance router
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// Buat aplikasi Vue
+const app = createApp({
+    data() {
+        return {
+            title: 'Laravel vue SPA',
+        }
+    }
+});
 
-// Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
-//     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
-// });
+// Import komponen Vue dari folder 'components' secara otomatis
+Object.entries(import.meta.glob('./components/*.vue', { eager: true })).forEach(([path, definition]) => {
+    const componentName = path.split('/').pop().replace(/\.\w+$/, ''); // Ambil nama file sebagai nama komponen
+    app.component(componentName, definition.default); // Daftarkan komponen secara otomatis
+});
 
-/**
- * Finally, we will attach the application instance to a HTML element with
- * an "id" attribute of "app". This element is included with the "auth"
- * scaffolding. Otherwise, you will need to add an element yourself.
- */
+// Gunakan router di aplikasi Vue
+app.use(router);
 
+// Mount aplikasi ke elemen dengan id "app"
 app.mount('#app');
