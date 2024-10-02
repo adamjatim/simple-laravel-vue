@@ -1,28 +1,20 @@
+// Import fungsi createApp dari Vue
 import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
 
-// Import komponen halaman untuk routing
-import HomeComponent from './pages/HomeComponent.vue';
-import AboutComponent from './pages/AboutComponent.vue';
+// Import router yang sudah kamu buat di file terpisah (index.js)
+import router from './router';
 
-// Definisikan rute
-const routes = [
-    { path: '/', component: HomeComponent },
-    { path: '/about', component: AboutComponent }
-];
+// Import komponen lain seperti Header dan Footer
+import HeaderComponent from './components/HeaderComponent.vue';
+import FooterComponent from './components/FooterComponent.vue';
 
-// Buat instance router
-const router = createRouter({
-    history: createWebHistory(),
-    routes,
-});
-
-// Buat aplikasi Vue
+// Membuat instance aplikasi Vue
 const app = createApp({
+    // Data yang digunakan di dalam aplikasi
     data() {
         return {
-            title: 'Laravel vue SPA',
-        }
+            title: 'Laravel vue SPA', // Judul aplikasi
+        };
     }
 });
 
@@ -32,8 +24,12 @@ Object.entries(import.meta.glob('./components/*.vue', { eager: true })).forEach(
     app.component(componentName, definition.default); // Daftarkan komponen secara otomatis
 });
 
-// Gunakan router di aplikasi Vue
+// Daftarkan komponen Header dan Footer agar bisa dipakai di dalam template
+app.component('header-component', HeaderComponent);
+app.component('footer-component', FooterComponent);
+
+// Menggunakan router yang sudah diimpor sebelumnya
 app.use(router);
 
-// Mount aplikasi ke elemen dengan id "app"
+// Memasang (mount) aplikasi Vue ke elemen dengan id 'app' di HTML
 app.mount('#app');
