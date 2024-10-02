@@ -17,9 +17,7 @@
     <div id="app">
         <h1 v-text="'Hello, ' +title"></h1>
         <header-component></header-component>
-        <!-- router-view akan menampilkan komponen yang sesuai dengan route -->
         <router-view></router-view>
-        <example-component></example-component>
         <footer-component></footer-component>
     </div>
 
