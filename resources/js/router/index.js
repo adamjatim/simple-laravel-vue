@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 // Import komponen yang akan digunakan untuk rute (halaman yang berbeda)
 import HomeComponent from '../pages/HomeComponent.vue';
 import AboutComponent from '../pages/AboutComponent.vue';
+import UserComponent from '../pages/UserComponent.vue';
 import NotFoundComponent from '../pages/NotFoundComponent.vue';
 
 // Definisikan daftar rute
@@ -17,8 +18,11 @@ const routes = [
     // Route untuk halaman About ('/about')
     { path: '/about', component: AboutComponent },
 
+    // Route untuk halaman user ('/user/:name')
+    { path: '/user/:name', component: UserComponent },
+
     // Route untuk menangani semua path yang tidak sesuai (404 Not Found)
-    { path: '/:pathMatch(.*)*', component: NotFoundComponent }
+    { path: '/:pathMatch(.*)*', component: NotFoundComponent },
 ];
 
 // Membuat instance router dengan mode 'history' (URL bersih tanpa hash '#' di URL)

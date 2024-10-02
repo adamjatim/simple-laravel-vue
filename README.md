@@ -1,7 +1,7 @@
 # Vue Laravel SPA
 
 ## Build Setup
-
+For the Vue Js frontend:
 ```bash
 # install dependencies
 $ npm install
