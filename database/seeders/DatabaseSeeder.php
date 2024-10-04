@@ -15,9 +15,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
+
+        // Jika ingin melakukan pemanggilan db:seed tanpa harus memanggil nama class nya dengan menggunakan fitur $this-call
+
+        // $this->call([
+        //     UserSeeder::class,
+        //     PostSeeder::class,
+        //     CommentSeeder::class,
+        // ]);
     }
 }
