@@ -18,6 +18,10 @@ For the Laravel backend:
 # install Laravel dependencies
 $ composer install
 
+# migrate database & add sample data user
+$ php artisan migrate
+$ php artisan db:seed --class=UserSeeder
+
 # set up environment variables
 $ cp .env.example .env
 $ php artisan key:generate
