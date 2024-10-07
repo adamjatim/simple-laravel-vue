@@ -5,7 +5,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeComponent from '../pages/HomeComponent.vue';
 import AboutComponent from '../pages/AboutComponent.vue';
 import UserComponent from '../pages/UserComponent.vue';
-import ProfileComponent from '../pages/ProfileComponent.vue';
 import NotFoundComponent from '../pages/NotFoundComponent.vue';
 
 // Definisikan daftar rute
@@ -16,16 +15,8 @@ const routes = [
     // Route untuk halaman About ('/about')
     { name: 'About', path: '/about', component: AboutComponent },
 
-    // Route untuk halaman user ('/user')
-    { path: '/user', children: [
-        // Route untuk halaman profile user ('/user/:id')
-        { name: 'User', path: '/user', component: UserComponent, props: true },
-
-        // Route untuk halaman profile user ('/user/:id')
-        { name: 'Profile', path: '/user/:id?', component: ProfileComponent, props: true },
-    ] },
-
-
+    // Route untuk halaman user ('/user/:name')
+    { name: 'User', path: '/user/:username?', component: UserComponent, props: true },
 
     // Route untuk menangani semua path yang tidak sesuai (404 Not Found)
     { path: '/:pathMatch(.*)*', component: NotFoundComponent },
