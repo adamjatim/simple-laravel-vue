@@ -1,13 +1,17 @@
 <template>
     <div>
-        <section>
+        <section v-if="username">
+            <h1>Hello {{ username }}</h1>
+            <router-link v-bind:to="{ name: 'User' }">Back</router-link>
+        </section>
+        <section v-else>
             <h1>Daftar User</h1>
             <ul>
                 <li v-for="user in users">
-                    <router-link v-bind:to="profile_url(user.id)">{{user.name}}</router-link>
-                    <!-- <a href="" @click.prevent="lihatuser(user.id)">{{
+                    <!-- <router-link v-bind:to="profile_url(user.name)">{{user.name}}</router-link> -->
+                    <a href="" @click.prevent="lihatuser(user.name)">{{
                         user.name
-                    }}</a> -->
+                    }}</a>
                 </li>
             </ul>
         </section>
@@ -16,9 +20,10 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
+    props: ["username"],
     name: "UserComponent",
     data() {
         return {
@@ -26,22 +31,20 @@ export default {
         };
     },
     mounted() {
-        this.getUsers();
+        axios.get('/api/users').then((response) => {
+            console.log(response);
+            this.users = response.data
+        })
     },
     methods: {
-        getUsers() {
-            axios.get("/api/users").then((response) => {
-                console.log(response);
-                this.users = response.data;
-            });
+        profile_url(name) {
+            return "/user/" + name.toLowerCase();
         },
-        profile_url(id) {
-            return "/user/" +id;
-        },
-        lihatuser(id) {
+        lihatuser(name) {
+            // this.$router.push('/user/' +name.toLowerCase())
             this.$router.push({
-                name: "Profile",
-                params: { id },
+                name: "User",
+                params: { username: name.toLowerCase() },
             });
         },
     },
