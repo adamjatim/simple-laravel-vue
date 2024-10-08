@@ -1,7 +1,7 @@
 # Vue Laravel SPA
 
 ## Build Setup
-
+For the Vue Js frontend:
 ```bash
 # install dependencies
 $ npm install
@@ -17,6 +17,10 @@ For the Laravel backend:
 ```bash
 # install Laravel dependencies
 $ composer install
+
+# migrate database & add sample data user
+$ php artisan migrate
+$ php artisan db:seed --class=UserSeeder
 
 # set up environment variables
 $ cp .env.example .env
