@@ -13,18 +13,18 @@ import FooterComponent from './components/FooterComponent.vue';
 
 // Membuat instance aplikasi Vue
 const app = createApp({
-    // Data yang digunakan di dalam aplikasi
-    data() {
-        return {
-            title: 'Laravel vue SPA', // Judul aplikasi
-        };
-    }
+	// Data yang digunakan di dalam aplikasi
+	data() {
+		return {
+			title: 'Laravel vue SPA', // Judul aplikasi
+		};
+	}
 });
 
 // Import komponen Vue dari folder 'components' secara otomatis
 Object.entries(import.meta.glob('./components/*.vue', { eager: true })).forEach(([path, definition]) => {
-    const componentName = path.split('/').pop().replace(/\.\w+$/, ''); // Ambil nama file sebagai nama komponen
-    app.component(componentName, definition.default); // Daftarkan komponen secara otomatis
+	const componentName = path.split('/').pop().replace(/\.\w+$/, ''); // Ambil nama file sebagai nama komponen
+	app.component(componentName, definition.default); // Daftarkan komponen secara otomatis
 });
 
 // Daftarkan komponen Header dan Footer agar bisa dipakai di dalam template
