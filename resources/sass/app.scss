@@ -1,8 +1,8 @@
 // Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+@import url("https://fonts.bunny.net/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
 // @import 'bootstrap/scss/bootstrap';
@@ -13,19 +13,18 @@ $link-active-color: white;
 $link-active-bg: salmon;
 
 .nav-link {
-    padding: 10px;
-    text-decoration: none;
-    color: $link-color;
+	padding: 10px;
+	text-decoration: none;
+	color: $link-color;
 
-    // Hover effect untuk link
-    &:hover {
-        text-decoration: underline;
-    }
+	// Hover effect untuk link
+	&:hover {
+		text-decoration: underline;
+	}
 
-    // Style untuk link yang aktif
-    &.active {
-        background-color: $link-active-bg;
-        color: $link-active-color;
-    }
+	// Style untuk link yang aktif
+	&.active {
+		background-color: $link-active-bg;
+		color: $link-active-color;
+	}
 }
-
